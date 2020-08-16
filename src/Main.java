@@ -1,8 +1,10 @@
+import DBMS.MongoDB;
+
 public class Main {
     public static void main(String[] args) {
 
 
-        SetupBeraterprofile.setup();
+        SetupBeraterprofile.setupProfile();
 
         //MongoFuncions.updateValue("firstName", "Bombo", "Bombo");
 

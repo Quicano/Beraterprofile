@@ -1,20 +1,19 @@
 import DBMS.MongoDB;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SetupBeraterprofile {
 
-    public static void setup(){
-        createBeraterprofile();
+    public static void setupProfile(){
+
+        createProfile();
     }
 
-    private static void createBeraterprofile(){
-        MongoCollection<Document> beraterCollection = MongoDB.collection;
+    private static void createProfile(){
+        MongoCollection<Document> beraterCollection = MongoDB.connectCollection("Profile", "Collection");
 
         List<Document> beraterListe = new ArrayList<>();
         List<String> list = List.of("Java", "Javascript", "SQL", "Human Resourcing", "Distribution", "Project Managment", "Project Architecture", "Python", "Haskell", "C#");
@@ -22,7 +21,7 @@ public class SetupBeraterprofile {
         List<String> lastName = List.of("Zimmer", "Cruz", "Calmund", "Legat", "Antoinette", "Kleber", "Luther", "Costner", "From the Block", "Lustig");
 
         for(int i = 0; i < 10; i++){
-            List<String> userAreas = List.of(list.get(i), list.get(9-i));
+            List<String> userAreas = List.of(list.get(i), list.get(9-i), list.get((i+4)%10));
             Document doc = new Document("firstName", firstNames.get(i));
             doc.append("lastName", lastName.get(i));
             doc.append("email", firstNames.get(i) + "." + lastName.get(i) + "@Beraterfirma.com");

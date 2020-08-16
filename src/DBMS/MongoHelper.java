@@ -1,6 +1,5 @@
 package DBMS;
 
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoIterable;
@@ -9,15 +8,18 @@ import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 
-public class MongoFuncions {
-    private static MongoCollection collection = MongoDB.collection;         //Better way possible?
+public class MongoHelper {
+    private MongoCollection collection;         //Better way possible?
 
-    public static Document findByValue(String identifier, String value){
+    public MongoHelper(MongoCollection collection){
+        this.collection = collection;
+    }
+    public Document findByValue(String identifier, String value){
         return (Document) collection.find(new Document(identifier,value)).first();
     }
 
-    public static boolean updateValue(String identifier, String oldValue, String newValue){
-        Document found = MongoFuncions.findByValue(identifier, oldValue);
+    public boolean updateValue(String identifier, String oldValue, String newValue){
+        Document found = this.findByValue(identifier, oldValue);
         if (found != null){
             Bson updatedvalue = new Document(identifier, newValue);
             Bson updateoperation = new Document("$set", updatedvalue);
@@ -27,7 +29,7 @@ public class MongoFuncions {
         else return false;
     }
 
-    public static void searchForKeyword(String keyword){
+    public void searchForKeyword(String keyword){
         ArrayList<Document> docs = new ArrayList<Document>();
         MongoIterable found = collection.find();
             MongoCursor<Document> cursor = found.iterator();
