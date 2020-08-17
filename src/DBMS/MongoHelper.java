@@ -38,11 +38,13 @@ public class MongoHelper {
                 docs.add(doc);
                 System.out.println(doc.toString());
             }
+    }
 
+    public void searchInFocusAreas(){
 
     }
 
-    private static void createDocuments(){
+    private void createDocuments(){
 
     }
 }
