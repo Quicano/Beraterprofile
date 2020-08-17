@@ -7,6 +7,7 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MongoHelper {
     private MongoCollection collection;         //Better way possible?
@@ -40,7 +41,7 @@ public class MongoHelper {
             }
     }
 
-    public void searchInFocusAreas(){
+    public void searchInFocusAreas(List<String> matches){
 
     }
 
